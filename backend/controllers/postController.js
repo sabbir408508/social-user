@@ -2,7 +2,6 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const AppError = require('../utils/AppError');
 
-// Create a new post
 const createPost = async (req, res, next) => {
   try {
     const { author, title, content } = req.body;
@@ -17,7 +16,6 @@ const createPost = async (req, res, next) => {
   }
 };
 
-// Get all posts (newest first)
 const getAllPosts = async (req, res, next) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 });
@@ -27,7 +25,6 @@ const getAllPosts = async (req, res, next) => {
   }
 };
 
-// Get single post by ID with comments
 const getPostById = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -41,7 +38,6 @@ const getPostById = async (req, res, next) => {
   }
 };
 
-// Like a post
 const likePost = async (req, res, next) => {
   try {
     const post = await Post.findByIdAndUpdate(
@@ -58,7 +54,6 @@ const likePost = async (req, res, next) => {
   }
 };
 
-// Delete post and its comments
 const deletePost = async (req, res, next) => {
   try {
     const post = await Post.findByIdAndDelete(req.params.id);
@@ -72,7 +67,6 @@ const deletePost = async (req, res, next) => {
   }
 };
 
-// Add comment to a post
 const addComment = async (req, res, next) => {
   try {
     const { author, text } = req.body;
